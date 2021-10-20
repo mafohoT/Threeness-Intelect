@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form method="POST">
+      {% csrf_token %}
+      searched {{se}}
+
+      <table>
+        <tr>
+          <th>Appointment name</th>
+          <th>Appointment reason</th>
+          <th>Doctor</th>
+          <th>status</th>
+          <th>date</th>
+        </tr>
+        {% for p in pe %}
+        <tr>
+          <td>{{p.patient}}</td>
+          <td>{{p.appointment_reason}}</td>
+          <td>{{p.doctor}}</td>
+          <td>{{p.status}}</td>
+          <td>{{p.appointment_date}}</td>
+        </tr>
+        {% endfor %}
+    </form>
+    <a href={% url 'Doctorhome' %}>back</a>
+    <a href = "{% url 'logout' %}"> logout </a>
+
+  </body>
+</html>

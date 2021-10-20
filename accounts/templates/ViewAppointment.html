@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>Appointment name</th>
+        <th>Patient id number</th>
+        <th>appointment date</th>
+        <th>appointment reason</th>
+        <th>appointment status</th>
+
+
+      </tr>
+      {% for apps in app %}
+      <tr>
+        <td>{{apps.patient}}</td>
+        <td>{{apps.id_number}}</td>
+        <td>{{apps.appointment_date}}</td>
+        <td>{{apps.appointment_reason}}</td>
+        <td>{{apps.status}}</td>
+      </tr>
+      {% endfor %}
+
+      </table>
+      <a href = "{% url 'Doctorhome'%}"> back </a>
+  </body>
+</html>

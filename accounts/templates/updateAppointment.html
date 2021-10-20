@@ -1,0 +1,21 @@
+<HTML>
+<HEADER>
+    <TITLE>Login</TITLE>
+</HEADER>
+<BODY>
+  Update appointment
+    <a href = "{% url 'logout' %}"> logout </a>
+      <FORM  method=post >
+          {% csrf_token %}
+          {{form.doctor}}
+          {{form.status}}
+          {{form.appointment_date}}
+          <input type="submit">
+        </FORM>
+        <a href={% url 'Patienthome' %}>home</a>
+
+        {% for message in messages %}
+          {{message}}
+        {% endfor %}
+</BODY>
+</HTML>

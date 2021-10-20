@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <p>  hello {{request.user.patient}} </p>
+    <p> You have {{appointments}} appointments </p>
+    <p> in-progress {{pendingcount}}  Resolved {{res}}</p>
+    <a href = "{% url 'logout' %}"> logout </a>
+    <table>
+      <tr>
+        <th>Appointment name</th>
+        <th>appointment date</th>
+        <th>appointment reason</th>
+        <th>appointment status</th>
+        <th>delete appointment</th>
+        <th>view appointment</th>
+
+      </tr>
+      {% for ap in Allpendings %}
+      <tr>
+        <td>{{ap.patient}}</td>
+        <td>{{ap.appointment_date}}</td>
+        <td>{{ap.appointment_reason}}</td>
+        <td>{{ap.status}}</td>
+        <td><a href = "{% url 'delete_appointment' ap.id %}" onclick="return confirm('are you sure you need to delete appointment?')"> delete </a></td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <th>Appointment name</th>
+        <th>appointment date</th>
+        <th>appointment reason</th>
+        <th>appointment status</th>
+        <th>delete appointment</th>
+        <th>view appointment</th>
+
+      </tr>
+      {% for app in apps %}
+      <tr>
+        <td>{{app.patient}}</td>
+        <td>{{app.appointment_date}}</td>
+        <td>{{app.appointment_reason}}</td>
+        <td>{{app.status}}</td>
+        <td><a href = "{% url 'delete_appointment' app.id %}" onclick="return confirm('are you sure you need to delete appointment?')"> delete </a></td>
+      </tr>
+      {% endfor %}
+  </table>
+
+    <a href = "{% url 'createAppointment' %}"> Make appointment </a>
+    {% for message in messages %}
+      {{message}}
+    {% endfor %}
+
+  </body>
+</html>

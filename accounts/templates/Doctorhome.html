@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <p>  hello, Dr {{request.user}} </p>
+    <form method="POST">
+      {% csrf_token %}
+      <input type="search" name="searched" placeholder="search">
+      <button type="submit">search</button>
+      <table>
+
+    </form>
+
+    <p>appointments {{appointmentscount}} </p>
+    Resolved {{Resolv}}
+    <table>
+      <tr>
+        <th>Your availability time date</th>
+
+      </tr>
+      {% for p in DoctorAvailability %}
+      <tr>
+        <td>{{p.availability_datetime}}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <th>Appointment name</th>
+        <th>Patient id number</th>
+        <th>appointment_date</th>
+        <th>appointment reason</th>
+        <th>Delete</th>
+        <th>Details</th>
+
+      </tr>
+      {% for apps in appointment %}
+      <tr>
+        <td>{{apps.patient}}</td>
+        <td>{{apps.id_number}}</td>
+        <td>{{apps.appointment_date}}</td>
+        <td>{{apps.appointment_reason}}</td>
+        <td><a href = "{% url 'ViewAppointment' apps.id %}"> Details </a></td>
+        <td><a href = "{% url 'Doc_delete_appointment' apps.id %}" onclick="return confirm('are you sure you need to delete appointment?')"> delete </a></td>
+      </tr>
+      {% endfor %}
+
+
+    </table>
+
+    <a href = "{% url 'logout' %}"> logout </a>
+    <a href={% url 'Doctoravailability' %}>Create availability</a>
+    {% for message in messages %}
+      {{message}}
+    {% endfor %}
+  </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+      Admin Home Page
+    <p>  hello {{request.user}} </p>
+    <p>The are  {{num_patient}}  Patients</p>
+    <p>The are  {{appointmentscount}} appointments</p>
+    <table>
+      <tr>
+        <th>Patients name</th>
+        <th>id number</th>
+        <th>Cell number</th>
+        <th>Cell number</th>
+        <th>delete</th>
+
+      </tr>
+      {% for p in patients %}
+      <tr>
+        <td>{{p.username}}</td>
+        <td>{{p.id_number}}</td>
+        <td>{{p.phonenumber}}</td>
+        <td><a href = "{% url 'delete_patient' p.id %}" onclick="return confirm('are you sure you need to delete patient?')"> delete </a></td>
+
+
+      </tr>
+      {% endfor %}
+
+      <tr>
+        <th>Doctor name</th>
+        <th>availability time date</th>
+
+
+      </tr>
+      {% for p in DoctorAvailability %}
+      <tr>
+        <td>{{p.doctor}}</td>
+        <td>{{p.availability_datetime}}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <th>Appointment name</th>
+        <th>appointment_date</th>
+        <th>appointment_reason</th>
+        <th>status</th>
+        <th>update</th>
+        <th>Delete</th>
+      </tr>
+      {% for apps in appointment %}
+      <tr>
+        <td>{{apps.patient}}</td>
+        <td>{{apps.appointment_date}}</td>
+        <td>{{apps.appointment_reason}}</td>
+        <td>{{apps.status}}</td>
+        <td><a href = "{% url 'updateAppointment' apps.id %} "> Update </a></td>
+        <td><a href = "{% url 'delete_appointment' apps.id %}" onclick="return confirm('are you sure you need to delete appointment?')"> delete </a></td>
+
+
+      </tr>
+      {% endfor %}
+
+
+      <a href = "{% url 'logout' %}"> logout </a>
+  </body>
+</html>

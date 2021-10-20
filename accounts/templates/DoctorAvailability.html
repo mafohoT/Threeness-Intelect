@@ -1,0 +1,18 @@
+<HTML>
+<HEADER>
+    <TITLE>Login</TITLE>
+</HEADER>
+<BODY>
+  Main
+      <FORM  method=post >
+          {% csrf_token %}
+        
+          <input type="datetime-local" name = "availability_datetime" placeholder=" text">
+          <input type="submit">
+        </FORM>
+        <a href={% url 'Doctorhome' %}>home</a>
+        {% for message in messages %}
+          {{message}}
+        {% endfor %}
+</BODY>
+</HTML>
